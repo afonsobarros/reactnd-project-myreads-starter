@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 import Book from '../components/Book';
@@ -25,19 +24,13 @@ class Search extends Component {
     this.loadTimeout = setTimeout(() => this.getBooks(query), 500)
   }
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-  }
-
   getShelfTitle = (shelf) => {
     shelf = shelf.replace(/([A-Z])/g, ' $1').trim()
     return shelf.charAt(0).toUpperCase() + shelf.slice(1).toLowerCase();
   }
 
   getBooks(query) {
-
     const books = this.props.books;
-
     BooksAPI.search(query).then(
       res => {
         //console.log('search books', res)
@@ -97,9 +90,10 @@ class Search extends Component {
           <div className="bookshelf">
             <h2 className="bookshelf-title">Search results</h2>
             {
-              searchResults.length < 1 && this.state.query !== '' && (
+
+              searchResults.length < 1 && query !== '' && (
                 <p>
-                  No results retrieved for <b>"{this.state.query}"</b>. Try another term.
+                  No results retrieved for <b>"{query}"</b>. Try another term.
                 </p>
               )
             }
@@ -138,10 +132,10 @@ class Search extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">In my collections</h2>
               {
-                myReadingBooks.length < 1 && this.state.query !== '' && (
+                myReadingBooks.length < 1 && query !== '' && (
                   <div>
                     <p>
-                      No books found in My Collections for "<b>{this.state.query}</b>". Try another term.
+                      No books found in My Collections for "<b>{query}</b>". Try another term.
                     </p>
                   </div>
                 )

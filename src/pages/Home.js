@@ -10,16 +10,10 @@ class Home extends Component {
 
   render() {
 
-    const { books, updateBook } = this.props;
+    const { books, shelves} = this.props;
 
-    let shelves = [];
-
-    books.map(book => {
-      if (shelves.indexOf(book.shelf) === -1) shelves.push(book.shelf);
-    })
-
-    console.log('shelves', shelves)
-    console.log('books', books)
+    //console.log('shelves', shelves)
+    //console.log('books', books)
     return (
       <div className="list-books">
         <div className="list-books-content">

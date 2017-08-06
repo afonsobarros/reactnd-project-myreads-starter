@@ -12,17 +12,17 @@ class Search extends Component {
     query: '',
     searchResults: []
   }
-  
 
   constructor() {
-    super()
+    super();
     this.loadTimeout = 0;
+    this.myReadingBooks = [];
   }
 
   updateQuery = (query) => {
     clearTimeout(this.loadTimeout);
     this.setState({ query: query.trim() })
-    this.loadTimeout = setTimeout( () => this.getBooks(query), 500)
+    this.loadTimeout = setTimeout(() => this.getBooks(query), 500)
   }
 
   clearQuery = () => {
@@ -35,25 +35,36 @@ class Search extends Component {
   }
 
   getBooks(query) {
+
+    const books = this.props.books;
+
     BooksAPI.search(query).then(
       res => {
-        console.log('search books', res)
+        //console.log('search books', res)
         if (res) {
+          const bookList = res.error ? [] : res.map(book => {
+            books.map(item => {
+              if (item.id === book.id) {
+                book.shelf = item.shelf;
+              }
+              return item;
+            })
+            return book;
+          });
           this.setState({
-            searchResults: !res.error ? res : []
+            searchResults: bookList
           })
         }
       }
     )
   }
 
-
   render() {
 
     const { books, shelves } = this.props;
     const { query, searchResults } = this.state;
 
-    let myReadingBooks = [];
+    let myReadingBooks = this.myReadingBooks;
 
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
@@ -63,8 +74,13 @@ class Search extends Component {
     }
 
     myReadingBooks.sort(sortBy('title'))
-    if (searchResults && searchResults.length > 0)
+
+    if (searchResults && searchResults.length > 0) {
       searchResults.sort(sortBy('title'))
+    }
+
+    //console.log('Search shelves', shelves)
+    //console.log('Search books', books)
 
     return (
       <div className="search-books">
@@ -79,9 +95,9 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <div className="bookshelf">
-            <h2 className="bookshelf-title">Online search results</h2>
+            <h2 className="bookshelf-title">Search results</h2>
             {
-              searchResults.length < 1 && this.state.query != '' && (
+              searchResults.length < 1 && this.state.query !== '' && (
                 <p>
                   No results retrieved for <b>"{this.state.query}"</b>. Try another term.
                 </p>
@@ -92,7 +108,7 @@ class Search extends Component {
                 <div>
                   <p>
                     <span>The search from BooksAPI is limited to a particular set of search terms. Please use one of the following: </span>
-                    <a href="https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank">check search terms</a>
+                    <a href="https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank" rel="noopener noreferrer" title="check search terms">check search terms</a>
                   </p>
                   <p>However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if you don't find a specific author or title.</p>
                   <p> Every search is limited by search terms.</p>
@@ -120,9 +136,9 @@ class Search extends Component {
 
           <div className="search-books-results">
             <div className="bookshelf">
-              <h2 className="bookshelf-title">My Collections</h2>
+              <h2 className="bookshelf-title">In my collections</h2>
               {
-                myReadingBooks.length < 1 && this.state.query != '' && (
+                myReadingBooks.length < 1 && this.state.query !== '' && (
                   <div>
                     <p>
                       No books found in My Collections for "<b>{this.state.query}</b>". Try another term.

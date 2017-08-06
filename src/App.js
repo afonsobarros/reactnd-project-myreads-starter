@@ -20,6 +20,7 @@ class BooksApp extends Component {
         let shelves = [];
         books.map(book => {
           if (shelves.indexOf(book.shelf) === -1) shelves.push(book.shelf);
+          return book;
         })
         this.setState({ books, shelves });
       }
@@ -27,14 +28,34 @@ class BooksApp extends Component {
   }
 
   updateBook = (book, shelf) => {
-    //console.log('updateBook', book, shelf)
+    console.log('updateBook', book, shelf)
     let books = this.state.books;
-    BooksAPI.update(book, shelf).then(
-      res => {
-        book.shelf = shelf;
-        this.setState(books);
-      }
-    )
+    book.shelf = shelf;
+
+    if (books)
+      BooksAPI.update(book, shelf).then(
+        res => {
+          //console.log('BooksAPI.update', res);
+          let listIndex = -1;
+          books.map((item, index) => {
+            if (item.id === book.id) {
+              item.shelf = book.shelf;
+              listIndex = index;
+            }
+            return item;
+          })
+
+          if (listIndex === -1) {
+            books.push(book);
+          } else {
+            if (shelf === 'none' || shelf === 'clear') {
+              books = books.splice(listIndex, 1);
+            }
+          }
+
+          this.setState(books);
+        }
+      )
   }
 
   render() {

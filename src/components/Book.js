@@ -25,16 +25,16 @@ class Book extends Component {
                     {this.getShelfTitle(shelfOpt)}
                   </option>
                 ))}
-              <option value="none">None</option>
+              <option value="clear">None</option>
             </select>
           </div>
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">{book.authors && book.authors.toString()}
           {
-            book.authors && book.authors.map((author, index) => {
+            book.authors && book.authors.map((author, index) => 
               <span key={index}>{author}</span>
-            })
+            )
           }
         </div>
       </div>

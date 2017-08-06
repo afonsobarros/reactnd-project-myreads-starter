@@ -22,6 +22,7 @@ class Search extends Component {
 
     const { books } = this.props;
     const { query } = this.state;
+
     let filteredBooks;
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
@@ -29,7 +30,7 @@ class Search extends Component {
     } else {
       filteredBooks = books
     }
-    
+
     filteredBooks.sort(sortBy('title'))
 
     return (
@@ -47,12 +48,25 @@ class Search extends Component {
                 */
             }
             <input type="text" placeholder="Search by title or author"
-											value={query}
-											onChange={(e) => this.updateQuery(e.target.value)}
-									/>
+              value={query}
+              onChange={(e) => this.updateQuery(e.target.value)}
+            />
           </div>
         </div>
         <div className="search-books-results">
+
+          {
+            filteredBooks.length < 1 && (
+              <div>
+                <p>
+                  <span>NOTES: The search from BooksAPI is limited to a particular set of search terms. Please use one of the following: </span>
+                  <a href="https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank">check search terms</a>
+                </p>
+                <p>However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if you don't find a specific author or title.</p>
+                <p> Every search is limited by search terms.</p>
+              </div>
+            )
+          }
           <ol className="books-grid">
             {
               filteredBooks.map((book) => (

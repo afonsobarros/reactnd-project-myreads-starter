@@ -1,8 +1,8 @@
 # Project myReads
 
-This is the final assessment project for Udacity's React Fundamentals course.
+This is an assessment project for Udacity's React Fundamentals course.
 
-This assessment used the starter template from the project for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com). The goal of the template is to save time by providing a static example of the CSS and HTML markup that may be used
+This assessment used the [starter template](https://github.com/udacity/reactnd-project-myreads-starter) from [udacity ](https://github.com/udacity/) for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com). The goal of the template is to save time by providing a static example of the CSS and HTML markup that may be used
 
 ## Installation
 

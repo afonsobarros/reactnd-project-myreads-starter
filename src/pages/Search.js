@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
+import Book from '../components/Book';
 
 class Search extends Component {
 

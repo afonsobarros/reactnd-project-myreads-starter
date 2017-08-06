@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Book from '../components/Book';
 
 class Home extends Component {
 
@@ -27,32 +28,7 @@ class Home extends Component {
                       {
                         books.map(book => book.shelf === shelf ? (
                           <li key={book.id}>
-                            <div className="book">
-                              <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
-                                <div className="book-shelf-changer">
-                                  <select value={shelf} onChange={e => updateBook(book, e.target.value)}>
-                                    <option value="none" disabled>Move to...</option>
-                                    {
-                                      shelves.map(shelfOpt => (
-                                        <option key={shelfOpt} 
-                                                value={shelfOpt}>
-                                          {this.getShelfTitle(shelfOpt)}
-                                        </option>
-                                      ))}
-                                    <option value="">None</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className="book-title">{book.title}</div>
-                              <div className="book-authors">{book.authors.toString()}                                
-                                {
-                                  book.authors.map( (author, index) => {
-                                    <span key={index}>{author}</span>
-                                  })
-                                }
-                                </div>
-                            </div>
+                            <Book book={book} shelves={shelves} updateBook={this.props.updateBook} />
                           </li>
                         ) : '')
                       }

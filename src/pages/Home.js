@@ -13,8 +13,8 @@ class Home extends Component {
 
     const { books, shelves} = this.props;
 
-    //console.log('shelves', shelves)
-    //console.log('books', books)
+    //console.log('Home shelves', shelves)
+    //console.log('Home books', books)
     return (
       <div className="list-books">
         <div className="list-books-content">

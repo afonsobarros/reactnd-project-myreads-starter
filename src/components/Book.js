@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Book extends Component {
-  
+
   getShelfTitle = (shelf) => {
     shelf = shelf.replace(/([A-Z])/g, ' $1').trim()
     return shelf.charAt(0).toUpperCase() + shelf.slice(1).toLowerCase();
@@ -9,8 +9,8 @@ class Book extends Component {
 
   render() {
 
-    const { book, shelves} = this.props;
-    
+    const { book, shelves } = this.props;
+
     return (
       <div className="book">
         <div className="book-top">
@@ -24,15 +24,20 @@ class Book extends Component {
                     value={shelfOpt}>
                     {this.getShelfTitle(shelfOpt)}
                   </option>
-                ))}
-              <option value="clear">None</option>
+                ))
+              }
+              {
+                book.shelf !== 'none' && (
+                  <option value="clear">None</option>
+                )
+              }
             </select>
           </div>
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">{book.authors && book.authors.toString()}
           {
-            book.authors && book.authors.map((author, index) => 
+            book.authors && book.authors.map((author, index) =>
               <span key={index}>{author}</span>
             )
           }

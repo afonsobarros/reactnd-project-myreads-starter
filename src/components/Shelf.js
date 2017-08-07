@@ -19,11 +19,11 @@ class Shelf extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {
-              books.map(book => book.shelf === shelf ? (
+              books.map(book => (
                 <li key={book.id}>
                   <Book book={ book } shelves={ shelves } updateBook={ updateBook } />
                 </li>
-              ) : '')
+              ))
             }
           </ol>
         </div>

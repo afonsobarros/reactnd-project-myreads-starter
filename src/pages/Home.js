@@ -4,6 +4,10 @@ import Shelf from '../components/Shelf';
 
 class Home extends Component {
 
+  filterByShelve (bookList, shelf) {
+    return bookList.filter( book => book.shelf === shelf );
+  }
+
   render() {
 
     const { books, shelves, updateBook} = this.props;
@@ -16,7 +20,7 @@ class Home extends Component {
           <div>
             {
               shelves.map(shelf => (
-               <Shelf key={shelf} books={ books } shelf={ shelf } shelves={ shelves } updateBook={ updateBook } />
+               <Shelf key={shelf} books={ this.filterByShelve(books, shelf) } shelf={ shelf } shelves={ shelves } updateBook={ updateBook } />
               ))
             }
           </div>

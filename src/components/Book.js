@@ -19,9 +19,8 @@ class Book extends Component {
             <select value={book.shelf} onChange={e => this.props.updateBook(book, e.target.value)}>
               <option value="none" disabled>Move to...</option>
               {
-                shelves.map(shelfOpt => (
-                  <option key={shelfOpt}
-                    value={shelfOpt}>
+                shelves.map( (shelfOpt, index) => (
+                  <option key={shelfOpt + index} value={shelfOpt}>
                     {this.getShelfTitle(shelfOpt)}
                   </option>
                 ))

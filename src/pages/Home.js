@@ -19,8 +19,8 @@ class Home extends Component {
         <div className="list-books-content">
           <div>
             {
-              shelves.map(shelf => (
-               <Shelf key={shelf} books={ this.filterByShelve(books, shelf) } shelf={ shelf } shelves={ shelves } updateBook={ updateBook } />
+              shelves.map( (shelf, index ) => (
+               <Shelf key={shelf + index} books={ this.filterByShelve(books, shelf) } shelf={ shelf } shelves={ shelves } updateBook={ updateBook } />
               ))
             }
           </div>

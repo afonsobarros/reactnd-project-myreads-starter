@@ -100,14 +100,14 @@ class Search extends Component {
             <h2 className="bookshelf-title">Search results</h2>
             {
 
-              searchResults.length == 0 && query !== '' && (
+              searchResults.length === 0 && query !== '' && (
                 <p>
                   No results retrieved for <b>"{query}"</b>. Try another term.
                 </p>
               )
             }
             {
-              searchResults.length == 0 && (
+              searchResults.length === 0 && (
                 <div>
                   <p>The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found <a href="https://github.com/afonsobarros/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank" rel="noopener noreferrer" title="check search terms">here</a>. </p>
                   <p>That list of terms are the only terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.</p>

@@ -109,12 +109,8 @@ class Search extends Component {
             {
               searchResults.length == 0 && (
                 <div>
-                  <p>
-                    <span>The search from BooksAPI is limited to a particular set of search terms. Please use one of the following: </span>
-                    <a href="https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank" rel="noopener noreferrer" title="check search terms">check search terms</a>
-                  </p>
-                  <p>However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if you don't find a specific author or title.</p>
-                  <p> Every search is limited by search terms.</p>
+                  <p>The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found <a href="https://github.com/afonsobarros/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md" target="_blank" rel="noopener noreferrer" title="check search terms">here</a>. </p>
+                  <p>That list of terms are the only terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.</p>
                 </div>
               )
             }

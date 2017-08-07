@@ -20,7 +20,7 @@ class Search extends Component {
 
   updateQuery = (query) => {
     clearTimeout(this.loadTimeout);
-    this.setState({ query: query.trim() })
+    this.setState({ query: query.toLowerCase() })
     this.loadTimeout = setTimeout(() => this.getBooks(query), 500)
   }
 
@@ -44,6 +44,7 @@ class Search extends Component {
             })
             return book;
           });
+
           this.setState({
             searchResults: bookList
           })
@@ -60,10 +61,18 @@ class Search extends Component {
     let myReadingBooks = this.myReadingBooks;
 
     if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      myReadingBooks = books.filter((book) => match.test(book.title) || match.test(book.authors.toString()))
+      const match = new RegExp(escapeRegExp(query), 'i');
+      //filter books in my collections
+      myReadingBooks = books.filter((book) => {
+        let result = false;
+        if (book.authors)
+          result = match.test(book.title.toLowerCase()) || match.test(book.authors.toString().toLowerCase());
+        else result = match.test(book.title.toLowerCase());
+        return result ? book : null;
+      })
+      //console.log(query, myReadingBooks);
     } else {
-      myReadingBooks = books
+      myReadingBooks = books;
     }
 
     myReadingBooks.sort(sortBy('title'))
@@ -91,14 +100,14 @@ class Search extends Component {
             <h2 className="bookshelf-title">Search results</h2>
             {
 
-              searchResults.length < 1 && query !== '' && (
+              searchResults.length == 0 && query !== '' && (
                 <p>
                   No results retrieved for <b>"{query}"</b>. Try another term.
                 </p>
               )
             }
             {
-              searchResults.length < 1 && (
+              searchResults.length == 0 && (
                 <div>
                   <p>
                     <span>The search from BooksAPI is limited to a particular set of search terms. Please use one of the following: </span>
@@ -111,7 +120,7 @@ class Search extends Component {
             }
 
             {
-              searchResults && searchResults.length > 1 && (
+              searchResults && searchResults.length > 0 && (
 
                 <div className="bookshelf-books">
                   <ol className="books-grid">
@@ -142,7 +151,7 @@ class Search extends Component {
               }
 
               {
-                myReadingBooks.length > 1 && (
+                myReadingBooks.length > 0 && (
 
                   <div className="bookshelf-books">
                     <ol className="books-grid">

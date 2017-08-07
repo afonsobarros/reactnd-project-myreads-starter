@@ -135,7 +135,7 @@ class Search extends Component {
 
           <div className="search-books-results">
             <div className="bookshelf">
-              <h2 className="bookshelf-title">In my collections</h2>
+              <h2 className="bookshelf-title">My collections</h2>
               {
                 myReadingBooks.length < 1 && query !== '' && (
                   <div>
@@ -164,6 +164,7 @@ class Search extends Component {
               }
             </div>
           </div>
+          
         </div>
       </div>
     )

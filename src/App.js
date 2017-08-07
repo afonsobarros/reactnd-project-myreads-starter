@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+import sortBy from 'sort-by';
 
 import './App.css'
 
@@ -22,6 +23,7 @@ class BooksApp extends Component {
           if (shelves.indexOf(book.shelf) === -1) shelves.push(book.shelf);
           return book;
         })
+        books.sort(sortBy('title'));
         this.setState({ books, shelves });
       }
     )
@@ -53,6 +55,7 @@ class BooksApp extends Component {
             }
           }
 
+          books.sort(sortBy('title'));
           this.setState(books);
         }
       )

@@ -12,8 +12,6 @@ class Home extends Component {
 
     const { books, shelves, updateBook} = this.props;
 
-    //console.log('Home shelves', shelves)
-    //console.log('Home books', books)
     return (
       <div className="list-books">
         <div className="list-books-content">

@@ -12,7 +12,6 @@ class Details extends Component {
     const bookId = this.props.match.params['bookId'];
     BooksAPI.get(bookId).then(
       book => {
-        //console.log('book', bookId, 'loaded');
         this.setState({
           book
         })
@@ -24,9 +23,8 @@ class Details extends Component {
 
     let { book } = this.state;
     let { shelves, updateBook } = this.props;
-    //console.log(this.props)
-    return (
 
+    return (
       <div>
         {
           book && book.id && (

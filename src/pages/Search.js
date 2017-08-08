@@ -33,7 +33,6 @@ class Search extends Component {
     const books = this.props.books;
     BooksAPI.search(query).then(
       res => {
-        //console.log('search books', res)
         if (res) {
           const bookList = res.error ? [] : res.map(book => {
             books.map(item => {
@@ -62,7 +61,7 @@ class Search extends Component {
 
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
-      //filter books in my collections
+
       myReadingBooks = books.filter((book) => {
         let result = false;
         if (book.authors)
@@ -70,7 +69,7 @@ class Search extends Component {
         else result = match.test(book.title.toLowerCase());
         return result ? book : null;
       })
-      //console.log(query, myReadingBooks);
+
     } else {
       myReadingBooks = books;
     }
@@ -81,13 +80,10 @@ class Search extends Component {
       searchResults.sort(sortBy('title'))
     }
 
-    //console.log('Search shelves', shelves)
-    //console.log('Search books', books)
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/">Close</Link>
+          <Link to="/" onClick={() => { window.history.goBack() }} className='close-search'> back </Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author"
               value={query}
@@ -164,7 +160,7 @@ class Search extends Component {
               }
             </div>
           </div>
-          
+
         </div>
       </div>
     )

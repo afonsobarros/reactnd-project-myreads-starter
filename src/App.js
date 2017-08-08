@@ -50,7 +50,7 @@ class BooksApp extends Component {
           if (listIndex === -1) {
             books.push(book);
           } else {
-            if (shelf === 'none' || shelf === 'clear') {
+            if (shelf === 'none') {
               books = books.splice(listIndex, 1);
             }
           }

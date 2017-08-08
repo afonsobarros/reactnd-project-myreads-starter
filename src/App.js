@@ -6,6 +6,8 @@ import './App.css'
 
 import Search from './pages/Search';
 import Home from './pages/Home';
+import Details from './pages/Details';
+
 import * as BooksAPI from './utils/BooksAPI';
 
 class BooksApp extends Component {
@@ -77,6 +79,9 @@ class BooksApp extends Component {
             <Search books={this.state.books} shelves={this.state.shelves} updateBook={this.updateBook} />
           )} />
 
+           <Route path='/details/:bookId' render={(props) => (
+            <Details books={this.state.books} match={props.match} shelves={this.state.shelves} updateBook={this.updateBook} />
+          )} />
         </div>
       </div>
     )

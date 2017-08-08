@@ -15,9 +15,11 @@ body,
 
 
 /* main page */
-.list-books{
-  padding-top:70px;
+
+.list-books {
+    padding-top: 70px;
 }
+
 .list-books-title {
     padding: 10px 0;
     background: #2e7c31;
@@ -163,9 +165,10 @@ body,
     color: #999;
 }
 
-.book-authors span{
-    display:block;
+.book-authors span {
+    display: block;
 }
+
 .book-top {
     position: relative;
     height: 200px;
@@ -202,11 +205,60 @@ body,
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     background: #eee;
     width: 128px;
-    height: 193px; 
+    height: 193px;
 }
 
 .book-cover-title {
     padding: 20px 10px 0;
     text-align: center;
     font-size: 0.8em;
+}
+
+
+/* details page */
+
+.book-details {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.book-details h1 {
+    text-align: center;
+}
+
+.book-details .grid {
+    display: table;
+}
+
+.book-details .grid>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+.book-details .description {
+    margin-top: 50px;
+}
+
+.book-details li {
+    color: grey;
+}
+
+.book-details .description,
+.book-details .list {
+    font-size: 0.8em;
+}
+
+
+.book-details .book-component {
+     display: inline-block;
+     vertical-align: middle; 
+     width: 26%;
+     margin: 0 0 0 25%;
+     text-align: 'center';
+}
+
+.book-details .details {
+ display: inline-block;
+ vertical-align: middle;
+ width: 49%;
+ text-align: left; 
 }

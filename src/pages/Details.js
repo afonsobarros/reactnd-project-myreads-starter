@@ -29,17 +29,15 @@ class Details extends Component {
         {
           book && book.id && (
             <div>
-              <Link to='/' className='close-search'> back </Link>
-              <div className='page book-details' style={{ width: '80%', margin: '0 auto', }} >
-                <h1 style={{ textAlign: 'center' }}>{book.title}</h1>
-                <div style={{ display: `table` }}>
-                  <div style={{ display: `inline-block`, verticalAlign: 'middle', width: '26%', margin: '0 0 0 25%', textAlign: 'center' }}>
+              <Link to="/" onClick={() => { window.history.goBack() }} className='close-search'> back </Link>
+              <div className='page book-details'>
+                <h1 >{book.title}</h1>
+                <div className="grid">
+                  <div className="book-component">
                     <Book book={book} shelves={shelves} updateBook={updateBook} />
                   </div>
-                  <div style={{ display: `inline-block`, verticalAlign: 'middle', width: '49%', textAlign: 'left' }}>
-                    <div className='preview-container'>
-                      <a className='button' href={book.previewLink}>Preview book</a>
-                    </div>
+                  <div className="details">
+                    
                     {book.authors && book.authors.length > 0 && (
                       <div className='list'>
                         <h3>Authors</h3>
@@ -62,7 +60,9 @@ class Details extends Component {
                     )}
                     <div className='list'>
                       <h3>Published by</h3>
-                      <p>{book.publisher} on {book.publishedDate}</p>
+                      <ul>
+                        <li>{book.publisher} on {book.publishedDate}</li>
+                      </ul>
                     </div>
                   </div>
                   <p className='description' >{book.description}</p>

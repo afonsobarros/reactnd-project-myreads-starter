@@ -21,7 +21,9 @@ class Search extends Component {
   updateQuery = (query) => {
     clearTimeout(this.loadTimeout);
     this.setState({ query: query.toLowerCase() })
-    this.loadTimeout = setTimeout(() => this.getBooks(query), 500)
+    if (query !== '') {
+      this.loadTimeout = setTimeout(() => this.getBooks(query), 500);
+    }
   }
 
   getShelfTitle = (shelf) => {
